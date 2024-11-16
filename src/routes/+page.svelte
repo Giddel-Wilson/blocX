@@ -91,91 +91,90 @@
 		mounted = true;
 	});
 
-	import Minus from "lucide-svelte/icons/minus";
-  import Plus from "lucide-svelte/icons/plus";
-  import * as Drawer from "$lib/components/ui/drawer/index.js";
- 
-  const data = [
-    {
-      id: 1,
-      goal: 400
-    },
-    {
-      id: 2,
-      goal: 300
-    },
-    {
-      id: 3,
-      goal: 200
-    },
-    {
-      id: 4,
-      goal: 300
-    },
-    {
-      id: 5,
-      goal: 200
-    },
-    {
-      id: 6,
-      goal: 278
-    },
-    {
-      id: 7,
-      goal: 189
-    },
-    {
-      id: 8,
-      goal: 239
-    },
-    {
-      id: 9,
-      goal: 300
-    },
-    {
-      id: 10,
-      goal: 200
-    },
-    {
-      id: 11,
-      goal: 278
-    },
-    {
-      id: 12,
-      goal: 189
-    },
-    {
-      id: 13,
-      goal: 349
-    },
-	{
-      id: 14,
-      goal: 180
-    },
-	{
-      id: 15,
-      goal: 79
-    },
-	{
-      id: 16,
-      goal: 40
-    }
-  ];
- 
-  const x = (d: { goal: number; id: number }) => d.id;
-  const y = (d: { goal: number; id: number }) => d.goal;
- 
-  let goal = 250;
- 
-  function handleClick(adjustment: number) {
-    goal = Math.max(42, Math.min(400, goal + adjustment));
-  }
+	import Minus from 'lucide-svelte/icons/minus';
+	import Plus from 'lucide-svelte/icons/plus';
+	import * as Drawer from '$lib/components/ui/drawer/index.js';
 
+	const data = [
+		{
+			id: 1,
+			goal: 400
+		},
+		{
+			id: 2,
+			goal: 300
+		},
+		{
+			id: 3,
+			goal: 200
+		},
+		{
+			id: 4,
+			goal: 300
+		},
+		{
+			id: 5,
+			goal: 200
+		},
+		{
+			id: 6,
+			goal: 278
+		},
+		{
+			id: 7,
+			goal: 189
+		},
+		{
+			id: 8,
+			goal: 239
+		},
+		{
+			id: 9,
+			goal: 300
+		},
+		{
+			id: 10,
+			goal: 200
+		},
+		{
+			id: 11,
+			goal: 278
+		},
+		{
+			id: 12,
+			goal: 189
+		},
+		{
+			id: 13,
+			goal: 349
+		},
+		{
+			id: 14,
+			goal: 180
+		},
+		{
+			id: 15,
+			goal: 79
+		},
+		{
+			id: 16,
+			goal: 40
+		}
+	];
+
+	const x = (d: { goal: number; id: number }) => d.id;
+	const y = (d: { goal: number; id: number }) => d.goal;
+
+	let goal = 250;
+
+	function handleClick(adjustment: number) {
+		goal = Math.max(42, Math.min(400, goal + adjustment));
+	}
 </script>
 
 <div class="flex h-screen bg-[#13111C]">
 	<!-- Sidebar -->
-	<aside class="hidden md:flex w-16 flex-col items-center border-r border-gray-800 py-6">
+	<aside class="hidden w-16 flex-col items-center border-r border-gray-800 py-6 md:flex">
 		<div class="mb-8">
 			<div class="flex h-8 w-8 items-center justify-center rounded-lg bg-purple-600">GW</div>
 		</div>
@@ -218,69 +217,91 @@
 		<header class="flex items-center justify-between border-b border-gray-800 p-4">
 			<Drawer.Root>
 				<Drawer.Trigger asChild let:builder>
-				  <Button builders={[builder]} variant="ghost" class="md:hidden focus:bg-transparent flex items-center justify-center">
-					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-menu"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
-				</Button>
+					<Button
+						builders={[builder]}
+						variant="ghost"
+						class="flex items-center justify-center text-white focus:bg-transparent md:hidden"
+					>
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							width="24"
+							height="24"
+							viewBox="0 0 24 24"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="2"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							class="lucide lucide-menu"
+							><line x1="4" x2="20" y1="12" y2="12" /><line x1="4" x2="20" y1="6" y2="6" /><line
+								x1="4"
+								x2="20"
+								y1="18"
+								y2="18"
+							/></svg
+						>
+					</Button>
 				</Drawer.Trigger>
 				<Drawer.Content class="bg-[#13111C]">
-				  <div class="mx-auto w-full max-w-sm">
-					<Drawer.Header>
-					  <Drawer.Title>Order Signals</Drawer.Title>
-					  <Drawer.Description>Set your daily trading goals.</Drawer.Description>
-					</Drawer.Header>
-					<div class="p-4 pb-0">
-					  <div class="flex items-center justify-center space-x-2">
-						<Button
-						  variant="outline"
-						  size="icon"
-						  class="h-8 w-8 shrink-0 rounded-full"
-						  on:click={() => handleClick(-10)}
-						  disabled={goal <= 42}
-						>
-						  <Minus class="h-4 w-4" />
-						  <span class="sr-only">Decrease</span>
-						</Button>
-						<div class="flex-1 text-center">
-						  <div class="text-7xl font-bold tracking-tighter">
-							+{goal}
-						  </div>
-						  <div class="text-muted-foreground text-[0.70rem] uppercase">
-							Profit/day
-						  </div>
+					<div class="mx-auto w-full max-w-sm">
+						<Drawer.Header>
+							<Drawer.Title>Order Signals</Drawer.Title>
+							<Drawer.Description>Set your daily trading goals.</Drawer.Description>
+						</Drawer.Header>
+						<div class="p-4 pb-0">
+							<div class="flex items-center justify-center space-x-2">
+								<Button
+									variant="outline"
+									size="icon"
+									class="h-8 w-8 shrink-0 rounded-full"
+									on:click={() => handleClick(-10)}
+									disabled={goal <= 42}
+								>
+									<Minus class="h-4 w-4" />
+									<span class="sr-only">Decrease</span>
+								</Button>
+								<div class="flex-1 text-center">
+									<div class="text-7xl font-bold tracking-tighter">
+										+{goal}
+									</div>
+									<div class="text-[0.70rem] uppercase text-muted-foreground">Profit/day</div>
+								</div>
+								<Button
+									variant="outline"
+									size="icon"
+									class="h-8 w-8 shrink-0 rounded-full"
+									on:click={() => handleClick(10)}
+									disabled={goal >= 400}
+								>
+									<Plus class="h-4 w-4" />
+									<span class="sr-only">Increase</span>
+								</Button>
+							</div>
+							<div class="mt-3 h-[120px]">
+								<Chart type="line" color="from-purple-400" />
+							</div>
 						</div>
-						<Button
-						  variant="outline"
-						  size="icon"
-						  class="h-8 w-8 shrink-0 rounded-full"
-						  on:click={() => handleClick(10)}
-						  disabled={goal >= 400}
-						>
-						  <Plus class="h-4 w-4" />
-						  <span class="sr-only">Increase</span>
-						</Button>
-					  </div>
-					  <div class="mt-3 h-[120px]">
-						<Chart type="line" color="from-purple-400" />
-					  </div>
+						<Drawer.Footer>
+							<Button>Report Progress</Button>
+							<Drawer.Close asChild let:builder>
+								<Button builders={[builder]} variant="outline">Cancel</Button>
+							</Drawer.Close>
+						</Drawer.Footer>
 					</div>
-					<Drawer.Footer>
-					  <Button>Report Progress</Button>
-					  <Drawer.Close asChild let:builder>
-						<Button builders={[builder]} variant="outline">Cancel</Button>
-					  </Drawer.Close>
-					</Drawer.Footer>
-				  </div>
 				</Drawer.Content>
-			  </Drawer.Root>
+			</Drawer.Root>
 
-			<Button variant="ghost" class="h-10 w-10 rounded-full bg-gray-100 bg-opacity-10 hover:bg-gray-200 hover:bg-opacity-20 hidden md:flex justify-center items-center">
+			<Button
+				variant="ghost"
+				class="hidden h-10 w-10 items-center justify-center rounded-full bg-gray-100 bg-opacity-10 hover:bg-gray-200 hover:bg-opacity-20 md:flex"
+			>
 				<span>
 					<ChevronLeft class="h-4 w-4 text-gray-400" />
 				</span>
 			</Button>
-			<span class="font-medium text-white flex items-center gap-2">Home</span>
+			<span class="flex items-center gap-2 font-medium text-white">Home</span>
 			<div class="flex items-center gap-4">
-				<div class="hidden md:block relative">
+				<div class="relative hidden md:block">
 					<Input
 						type="search"
 						placeholder="Search"
@@ -288,9 +309,9 @@
 					/>
 					<Search class="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400" />
 				</div>
-				<Button variant="ghost" class="h-10 w-10 rounded-full border border-gray-300">
+				<Button variant="ghost" class="h-10 w-10 rounded-full border border-gray-400">
 					<span class="sr-only">Notifications</span>
-					<div class="flex h-8 w-8 items-center justify-center rounded-full">
+					<div class="flex h-8 w-8 items-center justify-center rounded-full text-gray-400">
 						<svg
 							xmlns="http://www.w3.org/2000/svg"
 							width="16"
@@ -308,9 +329,12 @@
 						>
 					</div>
 				</Button>
-				<Button variant="ghost" class="h-10 w-10 rounded-full bg-gray-100 bg-opacity-10 hover:bg-gray-200 hover:bg-opacity-20">
+				<Button
+					variant="ghost"
+					class="h-10 w-10 rounded-full bg-gray-100 bg-opacity-10 hover:bg-gray-200 hover:bg-opacity-20"
+				>
 					<span class="sr-only">Profile</span>
-					<div class="flex h-8 w-8 items-center justify-center rounded-full">
+					<div class="flex h-8 w-8 items-center justify-center rounded-full text-gray-400">
 						<svg
 							xmlns="http://www.w3.org/2000/svg"
 							width="16"
@@ -336,14 +360,14 @@
 		<!-- Main Content -->
 		<main class="p-6">
 			<!-- Hero Section -->
-			<div class="mb-8 flex flex-col md:flex-row gap-6">
+			<div class="mb-8 flex flex-col gap-6 md:flex-row">
 				<Card
 					class="relative flex-1 overflow-hidden bg-gradient-to-br from-purple-700 to-purple-900 p-8"
 				>
 					{#if mounted}
-						<div class="z-14 relative" in:fly={{ y: 20, duration: 1400 }}>
+						<div class="relative z-20" in:fly={{ y: 20, duration: 1400 }}>
 							<div class="mb-2 text-sm text-purple-300">ETHEREUM 2.0</div>
-							<h1 class="mb-2 text-3xl font-bold">Your Gateway<br />into Blockchain</h1>
+							<h1 class="mb-2 text-3xl font-bold text-white">Your Gateway<br />into Blockchain</h1>
 							<p class="mb-4 text-purple-200">
 								blocX is a blockchain platform.<br />We make blockchain accessible.
 							</p>
@@ -368,16 +392,20 @@
 					<div class="mb-4 flex items-center gap-2">
 						<div class="flex items-center gap-2">
 							<div class="h-3 w-3 rounded-full bg-white"></div>
-							<span class="text-sm">ETH/USD</span>
+							<span class="text-sm text-gray-400">ETH/USD</span>
 						</div>
 						<div class="ml-auto flex gap-1">
-							<Button variant="ghost" size="sm" class="h-6 px-2 py-1 text-xs">1D</Button>
+							<Button variant="ghost" size="sm" class="h-6 px-2 py-1 text-xs text-gray-400"
+								>1D</Button
+							>
 							<Button
 								variant="ghost"
 								size="sm"
 								class="h-6 bg-purple-600/20 px-2 py-1 text-xs text-purple-400">1W</Button
 							>
-							<Button variant="ghost" size="sm" class="h-6 px-2 py-1 text-xs">1M</Button>
+							<Button variant="ghost" size="sm" class="h-6 px-2 py-1 text-xs text-gray-400"
+								>1M</Button
+							>
 						</div>
 					</div>
 					<div class="h-48">
@@ -387,9 +415,7 @@
 			</div>
 
 			<!-- Crypto Cards -->
-			<div
-				class="flex gap-4 overflow-x-auto pb-0"
-			>
+			<div class="flex gap-4 overflow-x-auto pb-0">
 				<Marquee pauseOnHover class="[--duration:20s]">
 					<div class="mb-6 flex gap-4 overflow-x-auto pb-4">
 						{#each cryptoData as crypto}
@@ -400,7 +426,7 @@
 									>
 										{crypto.icon}
 									</div>
-									<span>{crypto.symbol}/</span>
+									<span class="text-gray-200">{crypto.symbol}/</span>
 									<span class="text-gray-400">{crypto.currency}</span>
 									<span
 										class="ml-auto text-sm {crypto.change.startsWith('+')
@@ -408,7 +434,7 @@
 											: 'text-red-500'}">{crypto.change}</span
 									>
 								</div>
-								<div class="mb-2 text-2xl font-bold">{crypto.price}</div>
+								<div class="mb-2 text-2xl font-bold text-gray-200">{crypto.price}</div>
 								<div class="h-16">
 									<Chart
 										type="line"
@@ -494,7 +520,7 @@
 								<div class="flex flex-col">
 									<div class="flex items-center gap-2">
 										<span class="text-white">{trend.name}</span>
-										<span class="text-xs text-gray-400 hidden md:block">{trend.fullName}</span>
+										<span class="hidden text-xs text-gray-400 md:block">{trend.fullName}</span>
 									</div>
 								</div>
 								<div class="flex items-center gap-8">
