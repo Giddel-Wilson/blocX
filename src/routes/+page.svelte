@@ -245,7 +245,7 @@
 				<Drawer.Content class="bg-[#13111C]">
 					<div class="mx-auto w-full max-w-sm">
 						<Drawer.Header>
-							<Drawer.Title>Order Signals</Drawer.Title>
+							<Drawer.Title class="text-gray-300/90">Order Signals</Drawer.Title>
 							<Drawer.Description>Set your daily trading goals.</Drawer.Description>
 						</Drawer.Header>
 						<div class="p-4 pb-0">
@@ -253,7 +253,7 @@
 								<Button
 									variant="outline"
 									size="icon"
-									class="h-8 w-8 shrink-0 rounded-full"
+									class="h-8 w-8 shrink-0 rounded-full bg-transparent text-gray-200"
 									on:click={() => handleClick(-10)}
 									disabled={goal <= 42}
 								>
@@ -261,7 +261,7 @@
 									<span class="sr-only">Decrease</span>
 								</Button>
 								<div class="flex-1 text-center">
-									<div class="text-7xl font-bold tracking-tighter">
+									<div class="text-7xl font-bold tracking-tighter text-gray-200">
 										+{goal}
 									</div>
 									<div class="text-[0.70rem] uppercase text-muted-foreground">Profit/day</div>
@@ -269,7 +269,7 @@
 								<Button
 									variant="outline"
 									size="icon"
-									class="h-8 w-8 shrink-0 rounded-full"
+									class="h-8 w-8 shrink-0 rounded-full bg-transparent text-gray-200"
 									on:click={() => handleClick(10)}
 									disabled={goal >= 400}
 								>
@@ -282,7 +282,7 @@
 							</div>
 						</div>
 						<Drawer.Footer>
-							<Button>Report Progress</Button>
+							<Button class="border border-gray-400/70">Report Progress</Button>
 							<Drawer.Close asChild let:builder>
 								<Button builders={[builder]} variant="outline">Cancel</Button>
 							</Drawer.Close>
